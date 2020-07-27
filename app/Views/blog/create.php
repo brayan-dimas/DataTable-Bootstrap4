@@ -230,7 +230,8 @@
 		        </button>
 		      </div>		      
 		      <div class="modal-footer">
-		      	<a href="" id="deletePost" class="btn btn-danger">Yes</a>		      	
+		      	<!-- <a href="" id="deletePost" class="btn btn-danger">Yes</a>		      	 -->
+		      	<button type="button" id="deletePostAjax" class="btn btn-danger">Yes</a>		      	
 		        <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>		        
 		      </div>
 		    </div>
@@ -422,19 +423,33 @@
             $(this).removeClass("disabled");
         }
 
+     	$('#deletePostAjax').on('click', function() {
+    	 	console.log(arrToDelete)
+    	 	$.ajax({
+		        url: "<?php echo base_url('/blog/deleteAjax/'); ?>",
+		        type: "POST",
+		        data: {id:arrToDelete},
+		        dataType: "json",
+		        success: function( response ) {
+		        	console.log(response.success)  
+		        	if (response.success) {
+		        		fetchAllData(response);
+		        	}else {
+		        		arrToDelete.pop();
+		        	}		        	
+		        }
+		      })
+		      arrToDelete.pop();
+    	 });    
         if ($('#exampleModalCenterDelete').hasClass("show")) {       	 
         	 $(this).removeClass("disabled");
-        	 $('#deletePost').attr('href', '/blog/deleteAjax/'+parseInt(arrToDelete));
+        	 // $('#deletePost').attr('href', '/blog/deleteAjax/'+parseInt(arrToDelete));
         }else{
         	$(this).addClass("disabled");
         	$('.updateUpperButton').addClass("disabled");
         	// $('#postTable tbody tr').removeClass('selected');
-        	arrToDelete = [];
         	// arrToDelete.pop();
         }        
-        // arrToDelete.pop();
-		arrToDelete = [];
-
 	});
 
 	// $('#postTable').DataTable( {
@@ -587,31 +602,13 @@ if ($("#addPostAjax").length > 0) {
             $('#res_message').html('');
             },10000);
         }
-      })
-      // .done(function(){
-      //   	// $("#exampleModalUpdate").modal("hide");
-      //   	$('.modal').removeClass('show');
-      //   	$('.modal-backdrop').removeClass('show');
-
-      //   	// alert('test')
-      //   	// window.location = '';
-      //   });
+      });
     }
   })
 }
 
 function fetchAllData(response) {
-	console.log(response)
-	// var table = $('#postTable').DataTable(); 	
-	// table.row.add( {
- //        "id":       	response.data.id,
- //        "title":   		response.data.title,
- //        "body":     	response.data.body,
- //        "slug": 		response.data.slug,
- //        "created_at":   response.data.created_at,
- //        "content":      response.data.content
- //    } ).draw();
-
+	// console.log(response)
 	var table = $('#postTable').DataTable({	
 		destroy: true,
 		paging: false,
@@ -681,72 +678,6 @@ function fetchAllData(response) {
 		$('#deletePost').attr('href', '/blog/delete/'+data);	
     } );	
 }
-
-
-// function ajaxDataTable() {
-// 	var table = $('#postTable').DataTable({	
-// 		destroy: true,
-// 		// paging: false,
-//         // searching: false,
-//         // processing : true,
-//      	// serverSide : true,	
-//      	// retrieve: true,
-// 		ajax: {
-// 			method: "post",
-// 			url: "<?php echo base_url('/blog/fetchPost'); ?>"
-// 		},
-// 		columns : [ 
-// 			{data : "id"}, 
-//             {data : "title"}, 
-//             {data : "body"}, 
-//             {data : "slug"}, 
-//             {data : "created_at"},
-//             {data : "content"}	            
-//         ]           		
-// 	});
-
-// 	// var table = $('#postTable').DataTable();
-// 	$('#postTable tbody').on('click', 'tr', function () {
-// 		// $(this).toggleClass('selected');
-// 		var data = table.row( this ).data();
-// 		// console.log(data)
-// 		arrToUpdate.push(data['id']);
-// 		arrToUpdate.push(data['title']);
-// 		arrToUpdate.push(data['body']);
-// 		arrToUpdate.push(data['slug']);
-// 		arrToDelete.push(data['id']);
-		
-// 		$('.updateUpperButton').removeClass('disabled');
-// 		$('.deleteUpperButton').removeClass('disabled');
-// 		// $(this).css({'background-color':'#343a40','color':'white'});
-		
-// 		if ( $(this).hasClass('selected') ) {
-//             $(this).removeClass('selected');
-//         }
-//         else {
-//             table.$('tr.selected').removeClass('selected');
-//             $(this).addClass('selected');
-//         }				
-        
-//         // alert( 'You clicked on '+data['id']+'\'s row' );
-//     } );	
-
-
-//     $('#postTable tbody').on('click', 'button.getIdValueToUpdate', function () {			
-// 		// var data = table.row( this ).data();	
-// 		var data = $(this).attr('id');			
-//         $('#inputIdUpdateTable').val(data);
-//         // console.log(data)
-//         // alert( 'You clicked on '+data['id']+'\'s row' );
-
-//     } );
-
-//     $('#postTable tbody').on('click', 'button.getIdValueToDelete', function () {			
-// 		// var data = table.row( this ).data();	
-// 		var data = $(this).attr('id');		
-// 		$('#deletePost').attr('href', '/blog/delete/'+data);	
-//     } );	
-// }		
 </script>
 
 
