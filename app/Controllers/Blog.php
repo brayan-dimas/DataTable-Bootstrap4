@@ -130,15 +130,28 @@ class Blog extends BaseController
 		return redirect()->to('/');
 	}
 
-	function deleteAjax($id) {
-		$model = new BlogModel();
+	function deleteAjax() {
+		// $model = new BlogModel();
 
 		// $model->delete($id);
+		helper(['form', 'url']);
+ 
+        $model = new BlogModel();
+ 
+        $id = $this->request->getVar('id');
 
-		$model->delete(['id' => $id]);
+		$delete = $model->delete(['id' => implode($id)]);
 		// $model->save();
-		// return redirect()->to('/');
+		// // return redirect()->to('/');
+		$data = array(
+			'success' => true,
+	        'delete' => $delete,
+	        'msg' => "Successfully deleted",
+		);
+		
        	return $this->response->setJSON($data);
+
+       	// die;
 
 	}
 

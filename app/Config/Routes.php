@@ -39,7 +39,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Pages::index');
 $routes->get('blog/create', 'Blog::create');
 $routes->get('blog/delete/(:any)', 'Blog::delete/$1');
-$routes->get('blog/deleteAjax/(:any)', 'Blog::deleteAjax/$1');
+$routes->get('blog/deleteAjax', 'Blog::deleteAjax');
+
 
 
 $routes->get('blog/update/(:any)', 'Blog::update/$1');
