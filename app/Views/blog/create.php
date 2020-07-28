@@ -315,6 +315,8 @@
 		function ajaxDataTable1() {
 			$('#postTable').DataTable({	
 				destroy: true,
+				ordering: false,
+				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 				// processing : true,
         		// serverSide : true,	
         		// retrieve: true,
@@ -611,6 +613,8 @@ function fetchAllData(response) {
 	// console.log(response)
 	var table = $('#postTable').DataTable({	
 		destroy: true,
+		ordering: false,
+		lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 		// paging: false,
         // searching: false,
         // processing : true,
