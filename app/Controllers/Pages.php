@@ -14,7 +14,7 @@ class Pages extends BaseController
 
 		// $data = second parameter data. It's important because it's the way to send data to template/view
 		echo view('templates/header', $data);
-		echo view('pages/home');
+		echo view('login/login');
 		echo view('templates/footer');
 	}
 

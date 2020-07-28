@@ -1,40 +1,39 @@
-<section>
-	<div class="container">
-	    <div class="row">
-	      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-	        <div class="card card-signin my-5">
-	          <div class="card-body">
-	            <h5 class="card-title text-left">Sign In</h5>
-	            <div class="progress d-none">
-				  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-				</div>
-	            <form class="form-signin">
-	              <div class="form-label-group">
-	                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
-	                <!-- <label for="inputEmail">Email address</label> -->
-	              </div>
-
-	             <!--  <div class="form-label-group">
-	                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-	                <label for="inputPassword">Password</label>
-	              </div>
-
-	              <div class="custom-control custom-checkbox mb-3">
-	                <input type="checkbox" class="custom-control-input" id="customCheck1">
-	                <label class="custom-control-label" for="customCheck1">Remember password</label>
-	              </div>
-	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-	              <hr class="my-4"> -->
-	              <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-	              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
-	            </form>
-	          </div>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-</section>
-
+<!-- <section> -->
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png');">			
+			<div class="container">
+			    <div class="row">
+			      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+			        <div class="card card-signin my-5 shadow-lg rounded-lg">
+					  <h2 class="card-header bg-dark text-white rounded-top">Login</h2>
+			          <div class="card-body">	            
+			            <div class="progress d-none">
+						  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+						</div>
+			            <form class="form-signin">
+			              	<br>
+			              	<div class="form-label-group form-group">
+			                	<input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>	                
+			              	</div>
+			              	<p class="text-right">Forgot email?</p>
+				            <div class="form-group">
+							    <button type="button" class="btn btn-dark btn-lg btn-block">SIGN IN</button>
+							</div>		              
+			            </form>			            					
+			          </div>
+			          <br><br><br><br><br><br>		          
+			          	<div class="form-group text-center">
+						    <label>Don't have an account ?</label> 
+						    <h6 class="text-center">SIGN UP NOW</h6>
+					    </div>	
+			        </div>
+			      </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+<!-- </section> -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('form.form-signin').on('submit', function(event) {
@@ -49,4 +48,60 @@
 	footer.fixed-bottom, nav.fixed-top {
 		display: none;
 	}
+
+	.limiter {
+	    width: 100%;
+	    margin: 0 auto;
+	}
+	.container-login100 {
+	    width: 100%;
+	    min-height: 100vh;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -moz-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: center;
+	    align-items: center;
+	    padding: 15px;
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    background-size: cover;
+	    position: relative;
+	    z-index: 1;
+	}
+
+	.container-login100::before {
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    z-index: -1;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    left: 0;
+	    background-color: #343a40 !important;
+	    opacity: 0.8;
+	}
+
+	.card {
+		border: none !important;
+		border-radius: 19px !important;
+	}
+
+	h2.card-header {
+	    border-radius: 17px 17px 0px 0px !important;
+	    padding: 5% !important;
+	}
+
+	input#inputEmail,button.btn.btn-dark.btn-lg.btn-block {
+	    border-radius: 20px !important;
+	}
+
+	input#inputEmail {
+		background-color: #EBEBEB !important;
+		padding: 6%;
+	}	
+
 </style>
