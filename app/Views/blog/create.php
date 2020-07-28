@@ -315,11 +315,11 @@
 		function ajaxDataTable1() {
 			$('#postTable').DataTable({	
 				destroy: true,
-				processing : true,
-        		serverSide : true,	
+				// processing : true,
+        		// serverSide : true,	
         		// retrieve: true,
-        		paging: false,
-        		searching: false,
+        		// paging: true,
+        		// searching: true,
 				ajax: {
 					method: "post",
 					url: "<?php echo base_url('/blog/fetchPost'); ?>"
@@ -611,10 +611,10 @@ function fetchAllData(response) {
 	// console.log(response)
 	var table = $('#postTable').DataTable({	
 		destroy: true,
-		paging: false,
-        searching: false,
-        processing : true,
-     	serverSide : true,	
+		// paging: false,
+        // searching: false,
+        // processing : true,
+     	// serverSide : true,	
      	retrieve: true,
 		ajax: {
 			method: "post",
