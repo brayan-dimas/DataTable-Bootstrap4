@@ -313,7 +313,32 @@
 		ajaxDataTable1();
 
 		function ajaxDataTable1() {
+
+			// $('#postTable').DataTable({	
+
+			// });
 			$('#postTable').DataTable({	
+				initComplete: function() {
+					this.api().columns().every(function() {
+						var column = this;
+						var select = $('<select><option value=""></option></select>')
+							// .appendTo($(column.footer()).empty()) - pwede ding ilagay sa footer ung filter/ Pwede din tanggalin ung .empty()
+							// .appendTo("p")
+							.appendTo($(column.header()).empty())
+							.on('change', function() {
+								var val = $.fn.dataTable.util.escapeRegex(
+									$(this).val()
+								);
+								column
+									.search( val ? '^'+val+'$' : '', true, false)
+									.draw();
+							});
+
+							column.data().unique().sort().each(function(d, j) {
+								select.append('<option value="'+d+'">'+d+'</option>')
+							});
+					})
+				},
 				destroy: true,
 				ordering: false,
 				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
