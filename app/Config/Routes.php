@@ -41,7 +41,9 @@ $routes->get('blog/create', 'Blog::create');
 $routes->get('blog/delete/(:any)', 'Blog::delete/$1');
 $routes->get('blog/deleteAjax', 'Blog::deleteAjax');
 
-
+// Login routes
+// userlogin/ = first string must same the name of controller
+$routes->get('userlogin/login', 'UserLogin::login');
 
 $routes->get('blog/update/(:any)', 'Blog::update/$1');
 $routes->get('blog/create/posts', 'Blog::createNewPost');
@@ -54,6 +56,7 @@ $routes->get('blog/fetchPost', 'Blog::fetchPost');
 $routes->get('blog/create/posts', 'UserController::index');
 $routes->get('blog/(:any)', 'Blog::post/$1');
 $routes->get('(:any)', 'Pages::showme/$1');
+
 
 /**
  * --------------------------------------------------------------------

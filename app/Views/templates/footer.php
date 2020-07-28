@@ -1,8 +1,8 @@
-<footer class="fixed-bottom">
+<!-- <footer class="fixed-bottom">
 	<div class="footer-copyright text-center text-muted">© 2020 Copyright:
 	    <a href="#"> Codeigniter</a>
 	</div>
-</footer>
+</footer> -->
 
 <!-- <section> -->
 <!-- <div class="fixed-bottom"> -->

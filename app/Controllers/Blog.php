@@ -103,7 +103,7 @@ class Blog extends BaseController
 		// echo '</pre>';
 		// die;
 		return $this->response->setJSON($data);
-		die;
+		// die;
 	}
 
 	function createNewPost() {
