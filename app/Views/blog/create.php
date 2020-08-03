@@ -62,7 +62,7 @@
 	</div>
 
 
-	<!-- Modal create-->
+	<!-- Modal create Ajax-->
 	<div class="modal fade" id="exampleModalLongAjax" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongAjaxTitle" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -76,7 +76,7 @@
 	      	<div class="container">	      			      
 			<?= \Config\Services::validation()->listErrors(); ?>
 			<div class="form-group">
-		      	<span class="d-none alert alert-success mb-5" id="res_message">Created successfully</span>	        
+		      	<span class="d-none alert alert-success mb-5" id="res_message"></span>	        
 		    </div>			
 				<form id="addPostAjax" name="addPostAjax">		  
 				  <div class="form-group">
@@ -107,7 +107,7 @@
 	</div>
 
 
-	<!-- Modal create-->
+	<!-- Modal create Form-->
 	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">

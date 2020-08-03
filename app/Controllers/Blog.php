@@ -75,6 +75,13 @@ class Blog extends BaseController
 			// 2 parameters = first is the name of the session & second is value of session
 			$session->setFlashdata('success', 'New post was created!');
 
+			// $data = [
+			// 	'message' => 'Successfully added',
+			// 	'data' => $data1,
+			// 	'success' => true
+			// ];
+
+			// return $data;
 			return redirect()->to('/blog/create/posts');
 		}
 	}
