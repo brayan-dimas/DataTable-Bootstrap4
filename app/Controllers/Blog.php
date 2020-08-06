@@ -12,18 +12,7 @@ class Blog extends BaseController
 	// }
 
 	function post($slug) {
-		
-		// $i = null;
-
-		// if (!$i) {
-		// 	echo "walang laman";
-		// 	die;
-		// }
-		// else {
-		// 	echo "mayron";
-		// 	die;
-		// }
-
+			
 		// echo  'This page is: '. $page;
 		$model = new BlogModel();
 		// getPosts = model function to get all data

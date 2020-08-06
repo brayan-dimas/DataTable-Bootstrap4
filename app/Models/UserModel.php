@@ -25,6 +25,33 @@ class UserModel extends Model
 					->first();
 	}
 
+	public function getUserPassword($password='')
+	{
+		if (!$password) {
+			return $this->findAll();
+		}
+		
+		return $this->asArray()
+					->where(['password' => $password])
+					->first();
+	}
+
+
+	public function loginCredentials($credentials)
+	{
+
+		// if (!$email) = walang laman i fefetch nya lahat
+		if (!$credentials) {
+			return $this->findAll();
+		}	
+
+		// return the specific request data of email. isang result in database
+		// $creds = '"email" => '.$credentials["email"].' AND "password" => '.$credentials["password"].'';
+		return $this->asArray()
+					->where(['email' => $credentials['email'], 'password' => $credentials['password']])
+					->first();
+	}	
+
 
 	// public function getPostsById($id = null)
 	// {

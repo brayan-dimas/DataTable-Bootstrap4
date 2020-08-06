@@ -140,6 +140,9 @@
 	    	<li class="nav-item">
 	        	<a href="/blog/create/posts" class="btn btn-outline-success">Create Posts</a>
 	    	</li>
+	    	<li class="nav-item">
+	        	<a href="/logout" class="nav-link">Logout</a>
+	    	</li>
 	    </ul>
 	    <!-- <form class="form-inline my-2 my-lg-0">
 	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

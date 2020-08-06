@@ -1,7 +1,7 @@
 <section>
 
 	<?php  
-		$session = \Config\Services::session();
+		$session = \Config\Services::session();		
 	?>
 	<!-- success = the name of session that i initialized in Form Blog controller -->
 	<?php if(isset($session->success)): ?>
@@ -52,7 +52,7 @@
 	</div>
 </div> -->
 </section>
-
+<h1><?= session()->get('logged_in') ?></h1>
 <!-- Posts part -->
 <section>
 	<div class="container">

@@ -108,6 +108,9 @@
 									<span class="ripple pinkBg"></span>
 									<span class="ripple pinkBg"></span>
 								</a>
+								<!-- Encrypt Password -->
+								<!-- password_hash($password, PASSWORD_DEFAULT) -->
+								<!-- condition: password_verify($password, $result['password']) -->
 								<form class="form-register" id="register-form-ajax">
 					              	<!-- <br> -->
 					              	<div class="form-label-group form-group">
@@ -173,12 +176,15 @@
 
 		        	
 		        	if (response.data.success) {
+		        		$('.form-signin').toggleClass('d-none');
+		        		$('.form-signin-password').removeClass('d-none');
 		        		$('#div-res-message').removeClass('d-none');
 		        		$('#res_message').html(response.data.message);
 
 		        		if (!$('#div-res-message-danger').hasClass('d-none')) {
 		        			$('#div-res-message-danger').toggleClass('d-none')
 		        		}
+
 		        	}else {
 		        		$('#div-res-message-danger').removeClass('d-none');
 		        		$('#res_message_danger').html(response.data.message);
@@ -194,6 +200,50 @@
 		        }
 			})
 		});
+
+
+		$('.form-signin-password').on('submit', function(event) {
+			event.preventDefault();
+			// console.log($('.form-signin-password').serialize());
+
+			$.ajax({
+				url: "<?php echo base_url('/userlogin/passwordAuth') ?>",
+				method: "post",
+				data: $('.form-signin-password').serialize(),
+				dataType: "json",
+				beforeSend: function() {
+	            	$(".intro-banner-vdo-play-btn").removeClass('d-none');					
+				},
+				success: function(response) {
+					console.log(response);
+
+					if (response.data.success) {
+						homepage(response.data.result);
+					}
+					$(".intro-banner-vdo-play-btn").toggleClass('d-none');
+				},
+				error: function(response) {
+					console.log("Error " + response);
+				}
+			});
+		});
+
+		function homepage(result) {
+			// console.log(result);
+			// window.location = "<?php echo base_url('/pages/homePage') ?>";
+			// $.ajax({
+			// 	url: "<?php echo base_url('/userlogin/homepage') ?>",
+			// 	method: "post",
+			// 	data: {data:result},
+			// 	dataType: "json",
+			// 	success: function(response) {
+			// 		console.log(response);
+			// 	},
+			// 	error: function(error) {
+			// 		console.log("Error " + error);
+			// 	}
+			// });
+		}
 
 		$('form.form-register').on('submit', function(event) {
 			event.preventDefault();

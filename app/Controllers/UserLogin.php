@@ -2,6 +2,7 @@
 
 use CodeIgniter\Controller;
 use App\Models\UserModel;
+use App\Models\BlogModel;
 
 class UserLogin extends BaseController
 {
@@ -51,6 +52,66 @@ class UserLogin extends BaseController
 		return $this->response->setJSON($data);		
 	}
 
+	public function homepage()
+	{
+		// helper(['url']);
+		$result = $this->request->getVar('data');
+
+		$data = [
+			'data' => $result
+		];
+		// $model = new BlogModel();
+		// // getPosts = model function to get all data
+		// $data['news'] = $model->getPosts();
+
+
+		// echo view('templates/header', $data);
+		// echo view('pages/home');
+		// echo view('templates/footer');
+		// return redirect()->to( base_url('pages/homePage') );
+		return $this->response->setJSON($data);
+	}
+
+
+	public function passwordAuth() {
+		// helper
+		helper(['form', 'url']);
+
+		$model = new UserModel();
+		// getVar/getPost
+		// if (isset($this->request->getPost('password'))) {
+		 	$password = $this->request->getPost('password');
+
+		 	if ($password) {
+				$fetchUser = $model->getUserPassword($password);
+
+				if ($fetchUser) {
+					$result = array(
+						'result' => $fetchUser,
+						'success' => true,
+						'message' => 'Password Correct'
+					);
+				}else {
+					$result = array(
+						'success' => false,
+						'message' => 'Password Incorrect'
+					);
+				}
+
+				$data = [
+					'data' => $result
+				];
+
+				return $this->response->setJSON($data);
+			}else {
+				return redirect()->to( base_url('/') );			
+			}
+		// }
+
+
+		// return view('/');		
+	}
+
 	function register() {
 		helper(['form', 'url']);
 
@@ -86,5 +147,51 @@ class UserLogin extends BaseController
 	}
 
 	//--------------------------------------------------------------------
+
+
+
+	// Form
+
+	public function form($value='')
+	{
+
+		$request = \Config\Services::request();
+
+		$model = new UserModel();
+		if (isset($_POST['username']) && isset($_POST['password'])) {
+			$username = $request->getPost('username');
+			$password = $request->getPost('password');
+
+			$credentials = array(
+				'email' => $username,
+				'password' => $password
+			);
+			$specific_user = $model->loginCredentials($credentials);
+
+			if ($specific_user) {
+
+				$session = \Config\Services::session();
+				$userdata = array(
+					'email' => $username,
+					'logged_in' => true
+				);
+
+				$session->set($userdata);
+				// echo true;
+				// return true;
+				return redirect()->to('/pages/homePage/');
+
+			}
+		}
+		
+		return redirect()->to('/');
+
+	}
+
+	public function logout($value='')
+	{
+		session()->destroy();
+		return redirect()->to('/');
+	}
 
 }

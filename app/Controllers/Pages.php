@@ -18,6 +18,45 @@ class Pages extends BaseController
 		echo view('templates/footer');
 	}
 
+	public function indexForm()
+	{
+
+		if (!session()->get('logged_in')) {
+			redirect()->to('/');			
+		}
+		
+
+		$model = new BlogModel();
+		// getPosts = model function to get all data
+		$data['news'] = $model->getPosts();
+		// return view('welcome_message');
+		// echo 'This is pages class';
+
+		// $data = second parameter data. It's important because it's the way to send data to template/view
+		echo view('templates/header', $data);
+		echo view('login/loginForm');
+		echo view('templates/footer');
+	}
+
+
+	public function homePage()
+	{
+
+		if (!session()->get('logged_in')) {
+			redirect()->to('/');
+		}
+		
+
+		$model = new BlogModel();
+		// getPosts = model function to get all data
+		$data['news'] = $model->getPosts();
+
+
+		echo view('templates/header', $data);
+		echo view('pages/home');
+		echo view('templates/footer');
+	}
+
 	function showMe($page = 'home') {
 		// echo  'This page is: '. $page;
 

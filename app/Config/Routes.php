@@ -36,15 +36,32 @@ $routes->setAutoRoute(true);
 // index - method
 // blog/create - link
 // Blog::create - Controller
-$routes->get('/', 'Pages::index');
+
+// Ajax Form
+// $routes->get('/', 'Pages::index');
+$routes->get('/', 'Pages::indexForm', ['filter' => 'noauth']);
+$routes->get('pages/homePage', 'Pages::homePage', ['filter' => 'noauth']);
+
 $routes->get('blog/create', 'Blog::create');
 $routes->get('blog/delete/(:any)', 'Blog::delete/$1');
 $routes->get('blog/deleteAjax', 'Blog::deleteAjax');
 
 // Login routes
 // userlogin/ = first string must same the name of controller
+// Ajax
 $routes->get('userlogin/login', 'UserLogin::login');
 $routes->get('userlogin/register', 'UserLogin::register');
+$routes->get('userlogin/password', 'UserLogin::passwordAuth');
+$routes->get('userlogin/homepage', 'UserLogin::homepage');
+
+$routes->get('/logout', 'UserLogin::logout');
+
+
+// Login Form
+
+$routes->get('userlogin/form', 'UserLogin::form', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'pages/homePage', 'Pages::indexHomePage', ['filter' => 'auth']);
+
 
 
 $routes->get('blog/update/(:any)', 'Blog::update/$1');
